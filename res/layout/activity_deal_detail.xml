@@ -1,0 +1,126 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".DealDetailActivity" >
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/sivImage"
+        android:layout_below="@+id/sivImage"
+        android:layout_marginTop="18dp" >
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/relativeLayout1"
+        android:layout_below="@+id/relativeLayout1" >
+
+        <Button
+            android:id="@+id/butButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:background="#45AAD1"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold|italic"
+            android:maxWidth="50dp"
+            android:maxHeight="30dp"
+            android:text="Buy" />
+
+        <TextView
+            android:id="@+id/dealValueTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:text="$45"
+            android:textColor="#F57A22"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+            android:id="@+id/expiresTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/dealValueTV"
+            android:layout_alignBottom="@+id/butButton"
+            android:text="Expires"
+            android:textColor="#FFFFFF"
+            android:textSize="8dp" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/detailsTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/relativeLayout2"
+        android:layout_centerVertical="true"
+        android:text="Details"
+        android:textSize="12sp"
+        android:textColor="#001A50"
+        android:layout_marginTop="5dp" />
+
+    <TextView
+        android:id="@+id/dealTitleTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="SAMPLE Title Text"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#001A50"
+        android:textSize="14sp" />
+
+    <Button
+            android:id="@+id/btnRating"
+            android:layout_width="28sp"
+            android:layout_height="28sp"
+            android:layout_alignBaseline="@+id/dealTitleTV"
+            android:layout_alignBottom="@+id/dealTitleTV"
+            android:layout_toRightOf="@+id/dealTitleTV"
+            android:background="@android:drawable/btn_star_big_on"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="5"
+            android:textColor="#000"
+            android:textSize="12sp" />
+    
+    <TextView
+        android:id="@+id/tvAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/sivImage"
+        android:layout_below="@+id/dealTitleTV"
+        android:text="TextView" 
+        android:layout_marginBottom="5dp"
+        android:textSize="9sp"/>
+
+    <ImageView
+            android:id="@+id/sivImage"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/dealTitleTV"
+        	android:layout_below="@+id/tvAddress"
+            android:src="@android:drawable/screen_background_light_transparent" /> 
+
+    <TextView
+        android:id="@+id/tvDealInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/detailsTV"
+        android:layout_below="@+id/detailsTV"
+        android:layout_marginTop="10dp"
+        android:text="TextView" 
+        android:textSize="12sp" />
+
+</RelativeLayout>

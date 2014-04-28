@@ -75,6 +75,19 @@ public class PublishFragmentPage1 extends Fragment {
     }
 	
 	/*
+	 * (non-Javadoc)
+	 * @see android.support.v4.app.Fragment#onCreate(android.os.Bundle)
+	 * Retreive the deal instance
+	 */
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		
+		deal = (Deal) getArguments().getSerializable("deal");
+	}
+	
+	/*
 	 * The continue button onClick set in the XML file
 	 */
 	public void continueButtonPressed(Button continueButton) {
@@ -86,7 +99,7 @@ public class PublishFragmentPage1 extends Fragment {
 			listener.continueButtonPage1Clicked();
 		} else {
 			Context context = getActivity().getApplicationContext();
-	        Toast.makeText(context, "Check entered data", Toast.LENGTH_SHORT).show();
+	        Toast.makeText(context, "Validation failed", Toast.LENGTH_SHORT).show();
 		}
 	}
 	

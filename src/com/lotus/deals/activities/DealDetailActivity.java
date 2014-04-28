@@ -9,28 +9,22 @@ import java.net.URL;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MotionEvent;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.lotus.deals.R;
 import com.lotus.deals.model.Deal;
 
-public class DealDetailActivity extends Activity implements SimpleGestureListener {
-
-	private SimpleGestureFilter detector;
-	private int position;
-
+public class DealDetailActivity extends Activity {
+	
+	private Deal deal;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_deal_detail);
-
-		detector = new SimpleGestureFilter(this,this);
-		position = (int) getIntent().getIntExtra("position",0);
+		
 		refresh();
 	}
 
@@ -90,8 +84,7 @@ public class DealDetailActivity extends Activity implements SimpleGestureListene
 	}
 	
 	private void refresh() {
-		Deal deal = DealManager.getInstance().getDeal(position);
-
+		
 		String finalImageUrl = getFinalRedirectedUrl(deal.getShowImageStandardBig());
         
 		ImageView imageView = (ImageView) findViewById(R.id.sivImage);
@@ -161,38 +154,4 @@ public class DealDetailActivity extends Activity implements SimpleGestureListene
 		getMenuInflater().inflate(R.menu.deal_detail, menu);
 		return true;
 	}
-
-	@Override
-	public boolean dispatchTouchEvent(MotionEvent me){
-		// Call onTouchEvent of SimpleGestureFilter class
-		this.detector.onTouchEvent(me);
-		return super.dispatchTouchEvent(me);
-	}
-	
-	@Override
-	public void onSwipe(int direction) {
-		switch (direction) {
-		case SimpleGestureFilter.SWIPE_RIGHT : 
-		case SimpleGestureFilter.SWIPE_DOWN : 
-			if(position>1) {
-				position--;
-				refresh();
-			}
-			break;
-		case SimpleGestureFilter.SWIPE_LEFT : 
-		case SimpleGestureFilter.SWIPE_UP : 
-			if(position < DealManager.getInstance().getSize() -1) {
-				position++;
-				refresh();
-			}
-			break;
-		}
-	}
-
-	@Override
-	public void onDoubleTap() {
-		Toast.makeText(this, "Double Tap", Toast.LENGTH_SHORT).show();
-	}
-
-
 }
