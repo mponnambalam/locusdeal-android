@@ -39,7 +39,8 @@ public class PublishActivity extends FragmentActivity implements PublishFragment
 	}
 
 	@Override
-	public void continueButtonPage1Clicked() {
+	public void continueButtonPage1Clicked(Deal dealFromFragment) {
+		deal = dealFromFragment;
 		// Load the next page...
 		FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 		PublishFragmentPage2 publishFragmentPage2 = PublishFragmentPage2.newInstance(deal);
@@ -48,19 +49,12 @@ public class PublishActivity extends FragmentActivity implements PublishFragment
 	}
 	
 	@Override
-	public void continueButtonPage2Clicked() {
+	public void continueButtonPage2Clicked(Deal dealFromFragment) {
+		deal = dealFromFragment;
 		// Load the next page...
 		FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 		PublishFragmentPage3 publishFragmentPage3 = PublishFragmentPage3.newInstance(deal);
 		ft.replace(R.id.publishFrameLayout, publishFragmentPage3);
-		ft.commit();
-	}
-	
-	@Override
-	public void backButtonPage2Clicked() {
-		FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-		PublishFragmentPage1 publishFragmentPage1 = PublishFragmentPage1.newInstance(deal);
-		ft.replace(R.id.publishFrameLayout, publishFragmentPage1);
 		ft.commit();
 	}
 

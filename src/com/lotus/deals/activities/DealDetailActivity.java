@@ -7,6 +7,7 @@ import java.net.ProtocolException;
 import java.net.URL;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.widget.Button;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 
 import com.lotus.deals.R;
 import com.lotus.deals.model.Deal;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 public class DealDetailActivity extends Activity {
 	
@@ -25,9 +27,13 @@ public class DealDetailActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_deal_detail);
 		
+		Intent intent = getIntent();
+		deal = (Deal) intent.getSerializableExtra("deal");
+		
 		refresh();
 	}
 
+	// http://stackoverflow.com/questions/14951696/java-urlconnection-get-the-final-redirected-url
 	public static String getFinalRedirectedUrl(String url)
 	{
 	    HttpURLConnection connection = null;

@@ -20,6 +20,7 @@ public class Deal implements Serializable {
 	public long ID;
 	public String affiliate;
 	public String name;
+	public String description;
 	public String address;
 	public String address2;
 	public String storeID;
@@ -39,7 +40,10 @@ public class Deal implements Serializable {
 	public String dealTitle;
 	public String disclaimer;
 	public String dealinfo;
+	public String startDate;
+	public String startTime;
 	public String expirationDate;
+	public String expirationTime;
 	public String postDate;
 	public String showImage;
 	public String showImageStandardBig;

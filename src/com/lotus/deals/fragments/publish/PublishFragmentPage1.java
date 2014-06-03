@@ -25,7 +25,7 @@ public class PublishFragmentPage1 extends Fragment {
 	private Spinner dealType;
 	
 	public interface PublishFragmentPage1Listener {
-		public void continueButtonPage1Clicked();
+		public void continueButtonPage1Clicked(Deal deal);
 	}
 
 	/*
@@ -96,7 +96,7 @@ public class PublishFragmentPage1 extends Fragment {
 			deal.setName(name.getText().toString());
 			deal.setAddress(address.getText().toString());
 			deal.setDealTitle(dealType.getSelectedItem().toString());
-			listener.continueButtonPage1Clicked();
+			listener.continueButtonPage1Clicked(deal);
 		} else {
 			Context context = getActivity().getApplicationContext();
 	        Toast.makeText(context, "Validation failed", Toast.LENGTH_SHORT).show();
