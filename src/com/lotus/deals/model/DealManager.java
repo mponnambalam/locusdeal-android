@@ -13,7 +13,7 @@ public class DealManager {
 		
 	}
 	
-	public static DealManager getInstance() {
+	public static DealManager sharedInstance() {
 		return sharedInstance;
 	}
 	
@@ -26,6 +26,9 @@ public class DealManager {
 	}
 	
 	public void addDeals(List<Deal> deals) {
+		// Check if duplicates
+		// For now we are clearing the cache and setting the new data
+		this.deals.clear();
 		this.deals.addAll(deals);
 	}
 	

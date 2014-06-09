@@ -1,21 +1,15 @@
 package com.lotus.deals.activities;
 
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
-import java.net.URL;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lotus.deals.R;
 import com.lotus.deals.model.Deal;
+import com.lotus.deals.utils.ImageUtils;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 public class DealDetailActivity extends Activity {
@@ -33,65 +27,9 @@ public class DealDetailActivity extends Activity {
 		refresh();
 	}
 
-	// http://stackoverflow.com/questions/14951696/java-urlconnection-get-the-final-redirected-url
-	public static String getFinalRedirectedUrl(String url)
-	{
-	    HttpURLConnection connection = null;
-	    String finalUrl = url;
-	    try {
-			do {
-			        try {
-						connection = (HttpURLConnection) new URL(finalUrl).openConnection();
-					} catch (MalformedURLException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-			        connection.setInstanceFollowRedirects(false);
-			        connection.setUseCaches(false);
-			        try {
-						connection.setRequestMethod("GET");
-					} catch (ProtocolException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-			        try {
-						connection.connect();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-			        int responseCode = 0;
-					try {
-						responseCode = connection.getResponseCode();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-			        if (responseCode >=300 && responseCode <400)
-			        {
-			            String redirectedUrl = connection.getHeaderField("Location");
-			            if(null== redirectedUrl)
-			                break;
-			            finalUrl =redirectedUrl;
-			                                System.out.println( "redirected url: " + finalUrl);
-			        }
-			        else
-			            break;
-			    }while (connection.getResponseCode() != HttpURLConnection.HTTP_OK);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
-	    connection.disconnect();
-	    return finalUrl;
-	}
-	
 	private void refresh() {
 		
-		String finalImageUrl = getFinalRedirectedUrl(deal.getShowImageStandardBig());
+		String finalImageUrl = ImageUtils.getFinalRedirectedUrl(deal.getShowImageStandardBig());
         
 		ImageView imageView = (ImageView) findViewById(R.id.sivImage);
 		imageView.setImageResource(0);
@@ -154,10 +92,10 @@ public class DealDetailActivity extends Activity {
         tvRating.setText(Integer.toString(deal.getRating()));
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.deal_detail, menu);
-		return true;
-	}
+//	@Override
+//	public boolean onCreateOptionsMenu(Menu menu) {
+//		// Inflate the menu; this adds items to the action bar if it is present.
+//		getMenuInflater().inflate(R.menu.deal_detail, menu);
+//		return true;
+//	}
 }

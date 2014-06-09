@@ -31,12 +31,12 @@ public class PublishActivity extends FragmentActivity implements PublishFragment
 		ft.commit();
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.publish, menu);
-		return true;
-	}
+//	@Override
+//	public boolean onCreateOptionsMenu(Menu menu) {
+//		// Inflate the menu; this adds items to the action bar if it is present.
+//		getMenuInflater().inflate(R.menu.publish, menu);
+//		return true;
+//	}
 
 	@Override
 	public void continueButtonPage1Clicked(Deal dealFromFragment) {
