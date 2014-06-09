@@ -1,5 +1,6 @@
 package com.lotus.deals.fragments.publish;
 
+import com.lotus.deals.R;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
@@ -12,7 +13,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.lotus.deals.R;
 import com.lotus.deals.model.Deal;
 
 public class PublishFragmentPage1 extends Fragment {
