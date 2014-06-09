@@ -1,6 +1,7 @@
 package com.lotus.deals.restclients;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import android.util.Log;
 
@@ -17,7 +18,7 @@ public class EightCouponsClient {
 		
 	}
 	
-	public EightCouponsClient sharedInstance() {
+	public static EightCouponsClient sharedInstance() {
 		return sharedInstance;
 	}
 	
@@ -36,6 +37,25 @@ public class EightCouponsClient {
 				*/
 				Log.d("DEBUG", "size of response json:"+jsonArray.length());
 				DealManager.sharedInstance().addDeals(Deal.fromJSONArray(jsonArray));
+			}
+			@Override
+			public void onFailure(Throwable arg0, String arg1) {
+				Log.d("DEBUG", "Failed reason "+arg1);
+			}
+			
+			@Override
+			public void onFailure(Throwable arg0) {
+				Log.d("DEBUG", "Failed reason");
+			}
+			
+			@Override
+			public void onFailure(Throwable arg0, JSONArray arg1) {
+				Log.d("DEBUG", "Failed reason "+arg1);
+			}
+			
+			@Override
+			public void onFailure(Throwable arg0, JSONObject arg1) {
+				Log.d("DEBUG", "Failed reason "+arg1);
 			}
 		});
 	}

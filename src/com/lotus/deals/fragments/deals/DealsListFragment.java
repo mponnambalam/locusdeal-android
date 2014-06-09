@@ -18,12 +18,6 @@ public class DealsListFragment extends ListFragment {
 	DealsAdapter dealsAdapter;
 	ListView lvDeals;
 	DealManager dealManager;
-
-    // Container Activity must implement this interface
-	// Display the deal detail activity on click
-    public interface OnDealSelectedListener {
-        public void onDealSelected(int position);
-    }
 	
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
@@ -39,7 +33,6 @@ public class DealsListFragment extends ListFragment {
 		View view = inflater.inflate(R.layout.fragment_deals_list, container, false);
         
         dealManager = DealManager.sharedInstance();
-        dealManager.getDeals().clear();
         
         dealsAdapter = new DealsAdapter(getActivity(), dealManager.getDeals());
         

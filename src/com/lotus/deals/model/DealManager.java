@@ -3,14 +3,17 @@ package com.lotus.deals.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.lotus.deals.restclients.EightCouponsClient;
+
 public class DealManager {
 
-	private static final DealManager sharedInstance = new DealManager();  
+	private static final DealManager sharedInstance = new DealManager();
 	
-	private List<Deal> deals = new ArrayList<Deal>();	
+	private List<Deal> deals;	
 	
 	private DealManager() {
-		
+		deals = new ArrayList<Deal>();
+		EightCouponsClient.sharedInstance().populateDealsFromRegion("94086");
 	}
 	
 	public static DealManager sharedInstance() {

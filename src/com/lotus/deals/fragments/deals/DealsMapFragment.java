@@ -1,5 +1,7 @@
 package com.lotus.deals.fragments.deals;
 
-public class DealsMapFragment {
+import android.support.v4.app.Fragment;
+
+public class DealsMapFragment extends Fragment {
 
 }
