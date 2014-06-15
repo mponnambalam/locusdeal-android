@@ -6,10 +6,18 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 
+import android.os.StrictMode;
+
 public class ImageUtils {
 	// http://stackoverflow.com/questions/14951696/java-urlconnection-get-the-final-redirected-url
 	public static String getFinalRedirectedUrl(String url)
 	{
+		// http://stackoverflow.com/questions/19266553/android-caused-by-android-os-networkonmainthreadexception
+		// The Strict mode is to remove the Android OS Network on Main Thread exception
+		// Ideally we have to use Async Task or otherwise for the Networking Task	
+		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+		StrictMode.setThreadPolicy(policy);
+		
 	    HttpURLConnection connection = null;
 	    String finalUrl = url;
 	    try {

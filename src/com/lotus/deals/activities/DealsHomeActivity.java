@@ -4,11 +4,10 @@ import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.ActionBar.TabListener;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.EditText;
 
 import com.lotus.deals.R;
@@ -31,6 +30,11 @@ public class DealsHomeActivity extends FragmentActivity implements TabListener {
 		DealManager.sharedInstance();
 		setContentView(R.layout.activity_deals_home);
 		setupNavigationTabs();
+		
+		// The Strict mode is to remove the Android OS Network on Main Thread exception
+		// Ideally we have to use Async Task or otherwise for the Networking Task
+		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+		StrictMode.setThreadPolicy(policy);
 	}
 
 //	@Override
