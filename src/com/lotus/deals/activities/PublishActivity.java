@@ -3,7 +3,6 @@ package com.lotus.deals.activities;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
-import android.view.Menu;
 import android.widget.FrameLayout;
 
 import com.lotus.deals.R;
@@ -59,12 +58,12 @@ public class PublishActivity extends FragmentActivity implements PublishFragment
 	}
 
 	@Override
-	public void previewButtonPage3Clicked() {
+	public void previewButtonPage3Clicked(Deal dealFromFragment) {
 		// Open the Deals detail activity for a preview
 	}
 
 	@Override
-	public void uploadButtonPage3Clicked() {
+	public void uploadButtonPage3Clicked(Deal dealFromFragment) {
 		// Get the final deal and push it to the server
 	}
 }

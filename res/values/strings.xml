@@ -9,5 +9,7 @@
     <string name="camera">Camera</string>
     <string name="picture">Upload Picture</string>
     <string name="continue_text">Continue</string>
+    <string name="upload">Upload</string>
+    <string name="preview">Preview</string>
 
 </resources>

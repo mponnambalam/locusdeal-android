@@ -21,6 +21,7 @@
         android:layout_alignTop="@+id/uploadPicture"
         android:layout_marginLeft="38dp"
         android:layout_toRightOf="@+id/uploadPicture"
+        android:onClick="browseButtonPressed"
         android:text="@string/browse" />
 
     <Button
@@ -29,6 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
+        android:onClick="cameraButtonPressed"
         android:text="@string/camera" />
 
     <Button
@@ -38,7 +40,8 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="31dp"
         android:layout_toLeftOf="@+id/cameraButton"
-        android:text="@string/camera" />
+        android:onClick="previewButtonPressed"
+        android:text="@string/preview" />
 
     <Button
         android:id="@+id/Button01"
@@ -47,6 +50,7 @@
         android:layout_alignBaseline="@+id/Button02"
         android:layout_alignBottom="@+id/Button02"
         android:layout_toRightOf="@+id/cameraButton"
-        android:text="@string/camera" />
+        android:onClick="uploadButtonPressed"
+        android:text="@string/upload" />
 
 </RelativeLayout>
