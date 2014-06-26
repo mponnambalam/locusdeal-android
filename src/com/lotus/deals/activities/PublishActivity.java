@@ -1,9 +1,11 @@
 package com.lotus.deals.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.lotus.deals.R;
 import com.lotus.deals.fragments.publish.PublishFragmentPage1;
@@ -13,6 +15,7 @@ import com.lotus.deals.fragments.publish.PublishFragmentPage2.PublishFragmentPag
 import com.lotus.deals.fragments.publish.PublishFragmentPage3;
 import com.lotus.deals.fragments.publish.PublishFragmentPage3.PublishFragmentPage3Listener;
 import com.lotus.deals.model.Deal;
+import com.lotus.deals.model.DealManager;
 
 public class PublishActivity extends FragmentActivity implements PublishFragmentPage1Listener, PublishFragmentPage2Listener, PublishFragmentPage3Listener {
 	
@@ -59,11 +62,13 @@ public class PublishActivity extends FragmentActivity implements PublishFragment
 
 	@Override
 	public void previewButtonPage3Clicked(Deal dealFromFragment) {
-		// Open the Deals detail activity for a preview
+		Intent i = new Intent(this, DealDetailActivity.class);
+		i.putExtra("deal", deal);
+		startActivity(i);
 	}
 
 	@Override
 	public void uploadButtonPage3Clicked(Deal dealFromFragment) {
-		// Get the final deal and push it to the server
+		Toast.makeText(this, "Todo: Send data to server", Toast.LENGTH_SHORT).show();
 	}
 }
