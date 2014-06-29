@@ -12,6 +12,7 @@ import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -20,12 +21,16 @@ import android.widget.Toast;
 import com.lotus.deals.R;
 import com.lotus.deals.model.Deal;
 
-public class PublishFragmentPage3 extends Fragment {
+public class PublishFragmentPage3 extends Fragment implements OnClickListener {
 
 	private Deal deal;
 	private PublishFragmentPage3Listener listener;
 	
 	private ImageView imageView;
+	private Button browseButton;
+	private Button cameraButton;
+	private Button uploadButton;
+	private Button previewButton;
 	
 	static int RESULT_LOAD_IMAGE = 0;
 	static int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1;
@@ -54,6 +59,11 @@ public class PublishFragmentPage3 extends Fragment {
       
       imageView = (ImageView) view.findViewById(R.id.uploadPicture);
       
+      browseButton = (Button) view.findViewById(R.id.browseButton);
+      cameraButton = (Button) view.findViewById(R.id.cameraButton);
+      previewButton = (Button) view.findViewById(R.id.previewButton);
+      uploadButton = (Button) view.findViewById(R.id.uploadButton);
+      
       return view;
     }
 
@@ -67,19 +77,6 @@ public class PublishFragmentPage3 extends Fragment {
 			throw new ClassCastException(activity.toString()
 		            + " must implement MyListFragment.OnItemSelectedListener");
 		}
-	}
-	
-	// http://viralpatel.net/blogs/pick-image-from-galary-android-app/
-	public void browseButtonPressed(Button browseButton) {
-		Intent i = new Intent(
-				Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-				 
-				startActivityForResult(i, RESULT_LOAD_IMAGE);
-	}
-	
-	public void cameraButtonPressed(Button cameraButton) {
-		Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-	    startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
 	}
 	
 	@Override
@@ -106,14 +103,20 @@ public class PublishFragmentPage3 extends Fragment {
 		}
 	}
 	
-	boolean validateData() {
-		if(imageView.getDrawable() != null) {
-			return true;
-		}
-		return false;
+	// http://viralpatel.net/blogs/pick-image-from-galary-android-app/
+	private void browseButtonPressed() {
+		Intent i = new Intent(
+				Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+				 
+				startActivityForResult(i, RESULT_LOAD_IMAGE);
 	}
 	
-	public void uploadButtonPressed(Button uploadButton) {
+	private void cameraButtonPressed() {
+		Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+	    startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+	}
+	
+	private void uploadButtonPressed() {
 		if(validateData()) {
 			this.listener.uploadButtonPage3Clicked(deal);
 		} else {
@@ -122,12 +125,39 @@ public class PublishFragmentPage3 extends Fragment {
 		}
 	}
 	
-	public void previewButtonPressed(Button previewButton) {
+	private void previewButtonPressed() {
 		if(validateData()) {
 			this.listener.previewButtonPage3Clicked(deal);
 		} else {
 			Context context = getActivity().getApplicationContext();
 	        Toast.makeText(context, "Validation failed", Toast.LENGTH_SHORT).show();
+		}
+	}
+	
+	private boolean validateData() {
+		if(imageView.getDrawable() != null) {
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.browseButton:
+			browseButtonPressed();
+			break;
+		case R.id.cameraButton:
+			cameraButtonPressed();
+			break;
+		case R.id.uploadButton:
+			uploadButtonPressed();
+			break;
+		case R.id.previewButton:
+			previewButtonPressed();
+			break;
+		default:
+			break;
 		}
 	}
 	

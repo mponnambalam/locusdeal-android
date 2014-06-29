@@ -1,21 +1,22 @@
 package com.lotus.deals.fragments.publish;
 
-import com.lotus.deals.R;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.lotus.deals.R;
 import com.lotus.deals.model.Deal;
 
-public class PublishFragmentPage1 extends Fragment {
+public class PublishFragmentPage1 extends Fragment implements OnClickListener {
 	
 	private Deal deal;
 	private PublishFragmentPage1Listener listener;
@@ -71,6 +72,9 @@ public class PublishFragmentPage1 extends Fragment {
       address = (EditText) view.findViewById(R.id.address);
       dealType = (Spinner) view.findViewById(R.id.dealType);
       
+      Button continueButton = (Button) view.findViewById(R.id.continueButtonPage1);
+      continueButton.setOnClickListener(this);
+      
       return view;
     }
 	
@@ -88,28 +92,17 @@ public class PublishFragmentPage1 extends Fragment {
 	}
 	
 	/*
-	 * The continue button onClick set in the XML file
-	 */
-	public void continueButtonPressed(Button continueButton) {
-		// Validate the data in the inputs
-		if(validateData()) {
-			deal.setName(name.getText().toString());
-			deal.setAddress(address.getText().toString());
-			deal.setDealTitle(dealType.getSelectedItem().toString());
-			listener.continueButtonPage1Clicked(deal);
-		} else {
-			Context context = getActivity().getApplicationContext();
-	        Toast.makeText(context, "Validation failed", Toast.LENGTH_SHORT).show();
-		}
-	}
-	
-	/*
 	 * Validate the data that is supplied in the fragment
 	 */
 	public boolean validateData() {
+		
 		String nameString = name.getText().toString();
 		String addressString = address.getText().toString();
-		String dealTypeString = dealType.getSelectedItem().toString();
+		String dealTypeString = null;
+		
+		if(dealType.getSelectedItem() != null) {
+			dealTypeString = dealType.getSelectedItem().toString();
+		}
 		
 		if(nameString == null || nameString.isEmpty()) {
 			return false;
@@ -124,6 +117,25 @@ public class PublishFragmentPage1 extends Fragment {
 		}
 		
 		return true;
+	}
+
+	@Override
+	/*
+	 * The continue button onClick set in the XML file
+	 * You can't define a function in the XML file
+	 * onClick looks for the function in the parent activity, not in the Fragment
+	 */
+	public void onClick(View v) {
+		if(validateData()) {
+			deal.setName(name.getText().toString());
+			deal.setAddress(address.getText().toString());
+			deal.setDealTitle(dealType.getSelectedItem().toString());
+			listener.continueButtonPage1Clicked(deal);
+		} else {
+			Context context = getActivity().getApplicationContext();
+	        Toast.makeText(context, "Validation failed", Toast.LENGTH_SHORT).show();
+		}
+		
 	}
 
 }

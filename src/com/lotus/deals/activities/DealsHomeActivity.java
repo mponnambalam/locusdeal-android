@@ -3,11 +3,14 @@ package com.lotus.deals.activities;
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.ActionBar.TabListener;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.EditText;
 
 import com.lotus.deals.R;
@@ -37,14 +40,6 @@ public class DealsHomeActivity extends FragmentActivity implements TabListener {
 		StrictMode.setThreadPolicy(policy);
 	}
 
-//	@Override
-//	public boolean onCreateOptionsMenu(Menu menu) {
-//		// Inflate the menu; this adds items to the action bar if it is present.
-//		getMenuInflater().inflate(R.menu.deals_home, menu);
-//	    return true;
-//	}
-
-		
 	private void setupNavigationTabs() {
 		ActionBar actionBar = getActionBar();
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
@@ -89,6 +84,20 @@ public class DealsHomeActivity extends FragmentActivity implements TabListener {
 	public void onTabUnselected(Tab tab, android.app.FragmentTransaction ft) {
 		Log.d("DEBUG", "tab unselected:"+tab.getTag());
 	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.menu_deals_home, menu);
+	    return true;
+	}
+	
+	public void onPublishButtonClicked(MenuItem menuItem) {
+		Intent i = new Intent(this, PublishActivity.class);
+		startActivity(i);
+	}
+	
+	
 }
 
 

@@ -38,7 +38,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical|center_horizontal"
         android:layout_weight="25"
-        android:onClick="continueButtonPressed"
         android:text="@string/continue_text" />
 
 </LinearLayout>

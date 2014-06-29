@@ -11,5 +11,6 @@
     <string name="continue_text">Continue</string>
     <string name="upload">Upload</string>
     <string name="preview">Preview</string>
+    <string name="publish">Publish</string>
 
 </resources>

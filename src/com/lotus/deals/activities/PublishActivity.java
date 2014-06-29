@@ -15,7 +15,6 @@ import com.lotus.deals.fragments.publish.PublishFragmentPage2.PublishFragmentPag
 import com.lotus.deals.fragments.publish.PublishFragmentPage3;
 import com.lotus.deals.fragments.publish.PublishFragmentPage3.PublishFragmentPage3Listener;
 import com.lotus.deals.model.Deal;
-import com.lotus.deals.model.DealManager;
 
 public class PublishActivity extends FragmentActivity implements PublishFragmentPage1Listener, PublishFragmentPage2Listener, PublishFragmentPage3Listener {
 	
