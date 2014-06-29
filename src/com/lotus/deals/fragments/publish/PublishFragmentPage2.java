@@ -118,6 +118,30 @@ public class PublishFragmentPage2 extends Fragment implements OnClickListener {
 
 		return true;
 	}
+	
+	private void continueButtonPressed() {
+		// Validate the data in the inputs
+		if(validateData()) {
+			String descriptionString = description.getText().toString();
+			String startDateString = getDateFromDatePicker(startDate);
+			String startTimeString = getTimeFromTimePicker(startTime);
+
+			String endDateString = getDateFromDatePicker(endDate);
+			String endTimeString = getTimeFromTimePicker(endTime);
+
+			deal.description = descriptionString;
+			deal.startDate = startDateString;
+			deal.startTime = startTimeString;
+
+			deal.expirationDate = endDateString;
+			deal.expirationTime = endTimeString;
+
+			listener.continueButtonPage2Clicked(deal);
+		} else {
+			Context context = getActivity().getApplicationContext();
+			Toast.makeText(context, "Validation failed", Toast.LENGTH_SHORT).show();
+		}
+	}
 
 	//	http://stackoverflow.com/questions/8409043/getdate-from-datepicker-android
 	public static String getDateFromDatePicker(DatePicker datePicker){
@@ -150,26 +174,13 @@ public class PublishFragmentPage2 extends Fragment implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
-		// Validate the data in the inputs
-		if(validateData()) {
-			String descriptionString = description.getText().toString();
-			String startDateString = getDateFromDatePicker(startDate);
-			String startTimeString = getTimeFromTimePicker(startTime);
+		switch (v.getId()) {
+		case R.id.continueButtonPage2:
+			continueButtonPressed();
+			break;
 
-			String endDateString = getDateFromDatePicker(endDate);
-			String endTimeString = getTimeFromTimePicker(endTime);
-
-			deal.description = descriptionString;
-			deal.startDate = startDateString;
-			deal.startTime = startTimeString;
-
-			deal.expirationDate = endDateString;
-			deal.expirationTime = endTimeString;
-
-			listener.continueButtonPage2Clicked(deal);
-		} else {
-			Context context = getActivity().getApplicationContext();
-			Toast.makeText(context, "Validation failed", Toast.LENGTH_SHORT).show();
+		default:
+			break;
 		}
 	}
 

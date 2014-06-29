@@ -12,5 +12,10 @@
     <string name="upload">Upload</string>
     <string name="preview">Preview</string>
     <string name="publish">Publish</string>
+    <string-array name="deal_types">
+        <item>Restaurent</item>
+        <item>Clothing</item>
+        <item>Spa</item>
+    </string-array>
 
 </resources>

@@ -27,8 +27,9 @@ public class PublishActivity extends FragmentActivity implements PublishFragment
 		setContentView(R.layout.activity_publish);
 		Deal deal = new Deal();
 		FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-		PublishFragmentPage1 publishFragmentPage1 = PublishFragmentPage1.newInstance(deal);
-		ft.replace(R.id.publishFrameLayout, publishFragmentPage1);
+		PublishFragmentPage3 publishFragmentPage3 = PublishFragmentPage3.newInstance(deal);
+//		PublishFragmentPage1 publishFragmentPage1 = PublishFragmentPage1.newInstance(deal);
+		ft.replace(R.id.publishFrameLayout, publishFragmentPage3);
 		ft.commit();
 	}
 

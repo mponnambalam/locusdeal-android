@@ -64,6 +64,11 @@ public class PublishFragmentPage3 extends Fragment implements OnClickListener {
       previewButton = (Button) view.findViewById(R.id.previewButton);
       uploadButton = (Button) view.findViewById(R.id.uploadButton);
       
+      browseButton.setOnClickListener(this);
+      cameraButton.setOnClickListener(this);
+      previewButton.setOnClickListener(this);
+      uploadButton.setOnClickListener(this);
+      
       return view;
     }
 

@@ -118,14 +118,8 @@ public class PublishFragmentPage1 extends Fragment implements OnClickListener {
 		
 		return true;
 	}
-
-	@Override
-	/*
-	 * The continue button onClick set in the XML file
-	 * You can't define a function in the XML file
-	 * onClick looks for the function in the parent activity, not in the Fragment
-	 */
-	public void onClick(View v) {
+	
+	private void continueButtonPressed() {
 		if(validateData()) {
 			deal.setName(name.getText().toString());
 			deal.setAddress(address.getText().toString());
@@ -135,7 +129,22 @@ public class PublishFragmentPage1 extends Fragment implements OnClickListener {
 			Context context = getActivity().getApplicationContext();
 	        Toast.makeText(context, "Validation failed", Toast.LENGTH_SHORT).show();
 		}
-		
+	}
+
+	@Override
+	/*
+	 * The continue button onClick set in the XML file
+	 * You can't define a function in the XML file
+	 * onClick looks for the function in the parent activity, not in the Fragment
+	 */
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.continueButtonPage1:
+			continueButtonPressed();
+			break;
+		default:
+			break;
+		}		
 	}
 
 }
