@@ -15,7 +15,6 @@ import com.lotus.deals.model.Deal;
 import com.lotus.deals.model.DealManager;
 
 public class DealsListFragment extends ListFragment {
-	DealsAdapter dealsAdapter;
 	ListView lvDeals;
 	DealManager dealManager;
 	
@@ -30,16 +29,15 @@ public class DealsListFragment extends ListFragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 		      Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.fragment_deals_list, container, false);
+		View view = inflater.inflate(R.layout.fragment_deals_list, container, false);		
+        
+        DealsAdapter dealsAdapter = new DealsAdapter(getActivity(), dealManager.getDeals());
         
         dealManager = DealManager.sharedInstance();
-        
-        dealsAdapter = new DealsAdapter(getActivity(), dealManager.getDeals());
+		dealManager.dealsAdapter = dealsAdapter;
         
 		lvDeals = (ListView) view.findViewById(android.R.id.list);
-		lvDeals.setAdapter(dealsAdapter);
-		
-		setListAdapter(dealsAdapter);
+		lvDeals.setAdapter(dealManager.dealsAdapter);
 		
 		// return the view
 		return super.onCreateView(inflater, container, savedInstanceState);
@@ -48,6 +46,6 @@ public class DealsListFragment extends ListFragment {
 	@Override
 	public void onResume() {
 		super.onResume();
-		dealsAdapter.notifyDataSetChanged();
+		dealManager.dealsAdapter.notifyDataSetChanged();
 	}
 }
