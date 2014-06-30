@@ -29,15 +29,12 @@ public class DealsListFragment extends ListFragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 		      Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.fragment_deals_list, container, false);		
         
+		dealManager = DealManager.sharedInstance();
         DealsAdapter dealsAdapter = new DealsAdapter(getActivity(), dealManager.getDeals());
-        
-        dealManager = DealManager.sharedInstance();
 		dealManager.dealsAdapter = dealsAdapter;
-        
-		lvDeals = (ListView) view.findViewById(android.R.id.list);
-		lvDeals.setAdapter(dealManager.dealsAdapter);
+		
+		setListAdapter(dealManager.dealsAdapter);
 		
 		// return the view
 		return super.onCreateView(inflater, container, savedInstanceState);
