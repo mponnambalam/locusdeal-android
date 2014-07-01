@@ -29,11 +29,14 @@ public class DealDetailActivity extends Activity {
 
 	private void refresh() {
 		
-		String finalImageUrl = ImageUtils.getFinalRedirectedUrl(deal.getShowImageStandardBig());
-        
-		ImageView imageView = (ImageView) findViewById(R.id.sivImage);
-		imageView.setImageResource(0);
-        ImageLoader.getInstance().displayImage(finalImageUrl, imageView);
+		if(deal.bitmap != null) {
+			
+		} else {
+			String finalImageUrl = ImageUtils.getFinalRedirectedUrl(deal.getShowImageStandardBig());
+			ImageView imageView = (ImageView) findViewById(R.id.sivImage);
+			imageView.setImageResource(0);
+	        ImageLoader.getInstance().displayImage(finalImageUrl, imageView);
+		}
 		
 		TextView tvTitle = (TextView) findViewById(R.id.dealTitleTV);
 		tvTitle.setText(deal.getName());
@@ -81,7 +84,7 @@ public class DealDetailActivity extends Activity {
 			dealValue = deal.getDealDiscountPercent() + "% OFF";
 		} else if(deal.getDealSavings()>0)  {
 			dealValue="Savings: $"+ deal.getDealSavings();
-		} 
+		}
 		
 		tvDealValue.setText(dealValue);
 		

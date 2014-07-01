@@ -103,7 +103,8 @@ public class PublishFragmentPage3 extends Fragment implements OnClickListener {
 			// String picturePath contains the path of selected Image
 			imageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
 		} else if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-			Bitmap photo = (Bitmap) data.getExtras().get("data"); 
+			Bitmap photo = (Bitmap) data.getExtras().get("data");
+			deal.setBitmap(photo);
 			imageView.setImageBitmap(photo);
 		}
 	}
